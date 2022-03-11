@@ -11,6 +11,10 @@ export const SuperheroesRQ = () => {
            // cacheTime:5000,
            // refetching wait time
            staleTime:30000,
+           refetchOnMount: true,
+           refetchOnWindowFocus:true,
+           
+
 
        })
 
