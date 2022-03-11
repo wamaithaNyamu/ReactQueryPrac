@@ -1,6 +1,5 @@
-import {useQuery} from "react-query";
 import axios from "axios";
-
+import {useSuperHeroesData} from "../hooks/useSuperHeroesData";
 const fetchSuperheroes =()=>{
     return axios.get('http://localhost:4000/superheroes')
 }
@@ -14,27 +13,7 @@ const onError = (err) => {
 }
 export const SuperheroesRQ = () => {
     // unique key , function, options - cachetime default is 5min (5 *60*1000)
-   const {isLoading, data,isError, error,isFetching,refetch} = useQuery('super-heroes',fetchSuperheroes,
-       {
-           // cacheTime:5000,
-           // refetching wait time
-           // staleTime:30000,
-           // refetchOnMount: true,
-           // refetchOnWindowFocus:true,
-           // refetchInterval:2000,
-           // enabled set to false means the component wont fetch on mount
-           // enabled:false
-           // onsuccess and on error call backs
-           onSuccess,
-           onError,
-       //    select and filter
-           select : (data) => {
-               const superHeroNames = data.data.map((hero) => hero.name);
-               return superHeroNames
-           },
-
-
-       })
+   const {isLoading, data,isError, error,isFetching,refetch} = useSuperHeroesData(onSuccess,onError,'http://localhost:4000/superheroes')
 
     if (isLoading) return <h2>Loading...</h2>
     if (isError) return <h2>{error.message}</h2>
