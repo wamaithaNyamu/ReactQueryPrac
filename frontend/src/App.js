@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import {QueryClient, QueryClientProvider} from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
 import './App.css'
 import { HomePage } from './Components/home'
 import { SuperheroesRQ } from './Components/superheroesRQ'
@@ -32,6 +33,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+        <ReactQueryDevtools initialIsOpen={false} position={"bottom-right"}/>
       </QueryClientProvider>
   )
 }
