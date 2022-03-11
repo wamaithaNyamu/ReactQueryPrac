@@ -13,7 +13,8 @@ export const SuperheroesRQ = () => {
            staleTime:30000,
            refetchOnMount: true,
            refetchOnWindowFocus:true,
-           
+           refetchInterval:2000
+
 
 
        })
