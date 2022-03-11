@@ -5,8 +5,8 @@ const fetchSuperheroes =()=>{
     return axios.get('http://localhost:4000/superheroes')
 }
 export const SuperheroesRQ = () => {
-    // unique key
-   const {isLoading, data,isError, error} = useQuery('super-heroes',fetchSuperheroes)
+    // unique key , function, options - cachetime default is 5min (5 *60*1000)
+   const {isLoading, data,isError, error,isFetching} = useQuery('super-heroes',fetchSuperheroes,{cacheTime:5000})
 
     if (isLoading) return <h2>Loading...</h2>
     if (isError) return <h2>{error.message}</h2>
