@@ -25,8 +25,13 @@ export const SuperheroesRQ = () => {
            // enabled set to false means the component wont fetch on mount
            // enabled:false
            // onsuccess and on error call backs
-           // onSuccess,
-           // onError
+           onSuccess,
+           onError,
+       //    select and filter
+           select : (data) => {
+               const superHeroNames = data.data.map((hero) => hero.name);
+               return superHeroNames
+           },
 
 
        })
@@ -37,10 +42,12 @@ export const SuperheroesRQ = () => {
         <>
         <h2>Super heroes</h2>
         <button onClick={refetch}>Fetch Heroes</button>
-            {data?.data.map(hero => {
-                return <div key={hero.name}>{hero.name}</div>
+            {/*{data?.data.map(hero => {*/}
+            {/*    return <div key={hero.name}>{hero.name}</div>*/}
+            {/*})}*/}
+            {data.map(heroName => {
+                return <div key={heroName}>{heroName}</div>
             })}
-
         </>
     )
 }
