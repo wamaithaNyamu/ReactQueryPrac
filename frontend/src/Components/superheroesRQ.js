@@ -6,7 +6,13 @@ const fetchSuperheroes =()=>{
 }
 export const SuperheroesRQ = () => {
     // unique key , function, options - cachetime default is 5min (5 *60*1000)
-   const {isLoading, data,isError, error,isFetching} = useQuery('super-heroes',fetchSuperheroes,{cacheTime:5000})
+   const {isLoading, data,isError, error,isFetching} = useQuery('super-heroes',fetchSuperheroes,
+       {
+           // cacheTime:5000,
+           // refetching wait time
+           staleTime:30000,
+
+       })
 
     if (isLoading) return <h2>Loading...</h2>
     if (isError) return <h2>{error.message}</h2>
