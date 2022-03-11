@@ -6,14 +6,16 @@ const fetchSuperheroes =()=>{
 }
 export const SuperheroesRQ = () => {
     // unique key , function, options - cachetime default is 5min (5 *60*1000)
-   const {isLoading, data,isError, error,isFetching} = useQuery('super-heroes',fetchSuperheroes,
+   const {isLoading, data,isError, error,isFetching,refetch} = useQuery('super-heroes',fetchSuperheroes,
        {
            // cacheTime:5000,
            // refetching wait time
-           staleTime:30000,
-           refetchOnMount: true,
-           refetchOnWindowFocus:true,
-           refetchInterval:2000
+           // staleTime:30000,
+           // refetchOnMount: true,
+           // refetchOnWindowFocus:true,
+           // refetchInterval:2000,
+           // enabled set to false means the component wont fetch on mount
+           enabled:false
 
 
 
@@ -24,6 +26,7 @@ export const SuperheroesRQ = () => {
     return(
         <>
         <h2>Super heroes</h2>
+        <button onClick={refetch}>Fetch Heroes</button>
             {data?.data.map(hero => {
                 return <div key={hero.name}>{hero.name}</div>
             })}
