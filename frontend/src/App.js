@@ -5,7 +5,7 @@ import './App.css'
 import { HomePage } from './Components/home'
 import { SuperheroesRQ } from './Components/superheroesRQ'
 import { Superheroes } from './Components/superheroes'
-
+import {RqSuperHero} from './Components/RQSuperHero'
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
             <Route  path='/super-heroes'  element={ <Superheroes />} />
             <Route  path='/rq-super-heroes' element={<SuperheroesRQ />}/>
             <Route  path='/' element={<HomePage />}/>
+            <Route  path='/hero/:heroId' element={<RqSuperHero />}/>
 
           </Routes>
         </div>

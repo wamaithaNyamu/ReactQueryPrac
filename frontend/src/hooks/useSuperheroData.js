@@ -1,12 +1,13 @@
 import {useQuery} from "react-query";
 import axios from "axios";
 
+const fetchSuperhero = ({queryKey}) => {
+    const heroId = queryKey[1]
+    return axios.get(`http://localhost:4000/superheroes/${heroId}`)
 
-export const useSuperHeroesData = (onSuccess,onError,url) =>{
-    return useQuery('super-heroes',()=>{
-            return axios.get(url)
-        }
-        ,
+}
+export const useSuperHeroData = (heroId) =>{
+    return useQuery(['super-hero',heroId],fetchSuperhero,
         {
             // cacheTime:5000,
             // refetching wait time
@@ -17,8 +18,8 @@ export const useSuperHeroesData = (onSuccess,onError,url) =>{
             // enabled set to false means the component wont fetch on mount
             // enabled:false,
             // onsuccess and on error call backs
-            onSuccess,
-            onError,
+            // onSuccess,
+            // onError,
             //    select and filter
             // select : (data) => {
             //     const superHeroNames = data.data.map((hero) => hero.name);

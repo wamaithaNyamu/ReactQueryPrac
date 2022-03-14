@@ -1,4 +1,5 @@
 import axios from "axios";
+import {Link} from 'react-router-dom';
 import {useSuperHeroesData} from "../hooks/useSuperHeroesData";
 const fetchSuperheroes =()=>{
     return axios.get('http://localhost:4000/superheroes')
@@ -21,12 +22,14 @@ export const SuperheroesRQ = () => {
         <>
         <h2>Super heroes</h2>
         <button onClick={refetch}>Fetch Heroes</button>
-            {/*{data?.data.map(hero => {*/}
-            {/*    return <div key={hero.name}>{hero.name}</div>*/}
-            {/*})}*/}
-            {data.map(heroName => {
-                return <div key={heroName}>{heroName}</div>
+            {data?.data.map(hero => {
+                return <div key={hero.id}>
+                    <Link to={`/hero/${hero.id}`}>{hero.name}</Link>
+                </div>
             })}
+            {/*{data.map(heroName => {*/}
+            {/*    return <div key={heroName}>{heroName}</div>*/}
+            {/*})}*/}
         </>
     )
 }
